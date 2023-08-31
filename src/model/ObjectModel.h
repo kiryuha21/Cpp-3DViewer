@@ -6,17 +6,28 @@
 
 namespace s21 {
 
+constexpr auto kPointsFilename = "points.txt";
+constexpr auto kImageFilename = "image.png";
+
 class ObjectModel {
  public:
+  ObjectModel(int width, int height) : width_(width), height_(height) {}
+  ~ObjectModel() = default;
+
   void add_point(double x, double y, double z);
   void add_facet(std::vector<int> facet);
 
   void read_from_file(const std::string &filename);
   void write_to_file(const std::string &filename) const;
 
-  void move_points(double x, double y, double z) noexcept;
-  void scale_points(double x, double y, double z);
-  void rotate_points(double x, double y, double z);
+  void generate_data(const std::string &filename) const;
+  void call_gnuplot() const;
+
+  void move_points(const std::string &x, const std::string &y,
+                   const std::string &z) noexcept;
+  void scale_points(const std::string &x, const std::string &y,
+                    const std::string &z);
+  void rotate_points(const std::string &angle, const std::string &type);
 
  private:
   class Coordinates {
@@ -29,6 +40,9 @@ class ObjectModel {
 
     double x_, y_, z_;
   };
+
+  int width_ = 0;
+  int height_ = 0;
 
   std::vector<Coordinates> points_coordinates_;
   std::vector<std::vector<int>> facets_;

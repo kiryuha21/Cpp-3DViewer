@@ -12,6 +12,7 @@ namespace s21 {
 constexpr auto kDefaultPrecision = 7;
 
 double to_double(const std::string& str);
+double to_double(const std::string& str, double def_val);
 std::string to_precised_string(double val) noexcept;
 
 }  // namespace s21

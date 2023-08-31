@@ -18,6 +18,14 @@ double to_double(const std::string& str) {
   return res;
 }
 
+double to_double(const std::string& str, double def_val) {
+  if (str == "") {
+    return def_val;
+  }
+
+  return to_double(str);
+}
+
 std::string to_precised_string(double val) noexcept {
   std::stringstream ss;
   ss << std::setprecision(kDefaultPrecision) << std::fixed << val;

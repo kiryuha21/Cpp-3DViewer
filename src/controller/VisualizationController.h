@@ -1,7 +1,7 @@
 #ifndef INC_3D_VIEWER_TEMPLATE_VISUALIZATIONCONTROLLER_H
 #define INC_3D_VIEWER_TEMPLATE_VISUALIZATIONCONTROLLER_H
 
-#include "../model/VisualizationModel.h"
+#include "../model/ObjectModel.h"
 
 namespace s21 {
 class VisualizationController {
@@ -18,7 +18,7 @@ class VisualizationController {
   void visualize_object();
 
  private:
-  VisualizationModel* model_ = nullptr;
+  ObjectModel* model_ = nullptr;
 };
 }  // namespace s21
 
