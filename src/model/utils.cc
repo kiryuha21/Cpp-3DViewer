@@ -19,7 +19,7 @@ double to_double(const std::string& str) {
 }
 
 double to_double(const std::string& str, double def_val) {
-  if (str == "") {
+  if (str.empty()) {
     return def_val;
   }
 

@@ -15,8 +15,8 @@ add_executable(app
         src/view/MainWindow.h
         src/controller/VisualizationController.cc
         src/controller/VisualizationController.h
-        src/model/VisualizationModel.cc
-        src/model/VisualizationModel.h
+        src/model/ObjectModel.cc
+        src/model/ObjectModel.h
         src/model/utils.cc
         src/model/utils.h)
 

@@ -7,20 +7,20 @@ VisualizationController::VisualizationController(int width, int height) {
 
 VisualizationController::~VisualizationController() { delete model_; }
 
-void VisualizationController::load_coord_delta(const std::string& x_delta,
-                                               const std::string& y_delta,
-                                               const std::string& z_delta) {
+void VisualizationController::move_object(const std::string& x_delta,
+                                          const std::string& y_delta,
+                                          const std::string& z_delta) {
   model_->move_points(x_delta, y_delta, z_delta);
 }
 
-void VisualizationController::load_scale_delta(const std::string& x_delta,
-                                               const std::string& y_delta,
-                                               const std::string& z_delta) {
+void VisualizationController::scale_object(const std::string& x_delta,
+                                           const std::string& y_delta,
+                                           const std::string& z_delta) {
   model_->scale_points(x_delta, y_delta, z_delta);
 }
 
-void VisualizationController::load_angle_delta(const std::string& delta,
-                                               const std::string& type) {
+void VisualizationController::rotate_object(const std::string& delta,
+                                            const std::string& type) {
   model_->rotate_points(delta, type);
 }
 

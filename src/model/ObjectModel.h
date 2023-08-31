@@ -15,7 +15,7 @@ class ObjectModel {
   ~ObjectModel() = default;
 
   void add_point(double x, double y, double z);
-  void add_facet(std::vector<int> facet);
+  void add_facet(const std::vector<int> &facet);
 
   void read_from_file(const std::string &filename);
   void write_to_file(const std::string &filename) const;

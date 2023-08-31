@@ -12,10 +12,10 @@
 namespace s21 {
 
 void ObjectModel::add_point(double x, double y, double z) {
-  points_coordinates_.push_back(ObjectModel::Coordinates{x, y, z});
+  points_coordinates_.emplace_back(x, y, z);
 }
 
-void ObjectModel::add_facet(std::vector<int> facet) {
+void ObjectModel::add_facet(const std::vector<int> &facet) {
   facets_.push_back(facet);
 }
 
@@ -26,9 +26,7 @@ void ObjectModel::read_from_file(const std::string &filename) {
   }
 
   std::string str;
-
   while (std::getline(file, str)) {
-    std::replace(str.begin(), str.end(), ',', '.');
     std::stringstream ss(str);
     char start = '0';
     ss >> start;
@@ -39,8 +37,7 @@ void ObjectModel::read_from_file(const std::string &filename) {
     } else if (start == 'f') {
       int point_number = 0;
       std::vector<int> numbers;
-      while (!ss.eof()) {
-        ss >> point_number;
+      while (ss >> point_number) {
         numbers.push_back(point_number);
       }
       add_facet(numbers);
@@ -82,8 +79,9 @@ void ObjectModel::move_points(const std::string &x, const std::string &y,
 
 void ObjectModel::scale_points(const std::string &x, const std::string &y,
                                const std::string &z) {
-  if (fabs(to_double(x, 1)) <= kEps || fabs(to_double(y, 1)) <= kEps ||
-      fabs(to_double(z, 1)) <= kEps) {
+  if (std::fabs(to_double(x, 1)) <= kEps ||
+      std::fabs(to_double(y, 1)) <= kEps ||
+      std::fabs(to_double(z, 1)) <= kEps) {
     throw std::logic_error("Zero scaling");
   }
 

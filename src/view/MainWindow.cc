@@ -38,14 +38,14 @@ MainWindow::~MainWindow() { delete controller_; }
 void MainWindow::on_render_button_clicked() const noexcept {
   try {
     controller_->load_object_file(chosen_file_path_);
-    controller_->load_coord_delta(x_coord_delta_entry_->get_text(),
-                                  y_coord_delta_entry_->get_text(),
-                                  z_coord_delta_entry_->get_text());
-    controller_->load_scale_delta(x_scale_delta_entry_->get_text(),
-                                  y_scale_delta_entry_->get_text(),
-                                  z_scale_delta_entry_->get_text());
-    controller_->load_angle_delta(angle_delta_entry_->get_text(),
-                                  angle_combo_box_->get_active_text());
+    controller_->move_object(x_coord_delta_entry_->get_text(),
+                             y_coord_delta_entry_->get_text(),
+                             z_coord_delta_entry_->get_text());
+    controller_->scale_object(x_scale_delta_entry_->get_text(),
+                              y_scale_delta_entry_->get_text(),
+                              z_scale_delta_entry_->get_text());
+    controller_->rotate_object(angle_delta_entry_->get_text(),
+                               angle_combo_box_->get_active_text());
     controller_->visualize_object();
   } catch (std::logic_error &e) {
     viewer_label_->set_text(e.what());
