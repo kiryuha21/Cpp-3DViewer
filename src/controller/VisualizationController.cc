@@ -28,7 +28,7 @@ void VisualizationController::load_object_file(const std::string& filename) {
   model_->read_from_file(filename);
 }
 
-void VisualizationController::visualize_object() {
+void VisualizationController::render_image() {
   model_->generate_data(kPointsFilename);
   model_->call_gnuplot();
 }

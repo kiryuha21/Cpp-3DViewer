@@ -9,7 +9,7 @@ FIND_VALGRIND_LEAKS = grep --color=always -n "definitely lost:" $(VALGRIND_OUTPU
 VALGRIND = valgrind --log-file="$(VALGRIND_OUTPUT)" --track-origins=yes --trace-children=yes --leak-check=full --leak-resolution=med
 
 VALGRIND_OUTPUT = valgrind.txt
-PROGRAM_OUTPUTS = plot.png points.txt
+PROGRAM_OUTPUTS = image.png points.txt
 
 TARGET_PATH = build
 TEST_TARGET  = 3DViewerTests

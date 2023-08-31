@@ -15,7 +15,7 @@ class VisualizationController {
                     const std::string& z_delta);
   void rotate_object(const std::string& delta, const std::string& type);
   void load_object_file(const std::string& filename);
-  void visualize_object();
+  void render_image();
 
  private:
   ObjectModel* model_ = nullptr;

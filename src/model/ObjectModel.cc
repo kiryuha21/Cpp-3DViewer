@@ -79,16 +79,18 @@ void ObjectModel::move_points(const std::string &x, const std::string &y,
 
 void ObjectModel::scale_points(const std::string &x, const std::string &y,
                                const std::string &z) {
-  if (std::fabs(to_double(x, 1)) <= kEps ||
-      std::fabs(to_double(y, 1)) <= kEps ||
-      std::fabs(to_double(z, 1)) <= kEps) {
+  double x_delta = to_double(x, 1);
+  double y_delta = to_double(y, 1);
+  double z_delta = to_double(z, 1);
+  if (std::fabs(x_delta) <= kEps || std::fabs(y_delta) <= kEps ||
+      std::fabs(z_delta) <= kEps) {
     throw std::logic_error("Zero scaling");
   }
 
   for (auto &point : points_coordinates_) {
-    point.x_ *= to_double(x, 1);
-    point.y_ *= to_double(y, 1);
-    point.z_ *= to_double(z, 1);
+    point.x_ *= x_delta;
+    point.y_ *= y_delta;
+    point.z_ *= z_delta;
   }
 }
 

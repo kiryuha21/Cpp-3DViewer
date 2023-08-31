@@ -46,10 +46,14 @@ void MainWindow::on_render_button_clicked() const noexcept {
                               z_scale_delta_entry_->get_text());
     controller_->rotate_object(angle_delta_entry_->get_text(),
                                angle_combo_box_->get_active_text());
-    controller_->visualize_object();
+    controller_->render_image();
   } catch (std::logic_error &e) {
     viewer_label_->set_text(e.what());
+    return;
   }
+
+  visualization_image_->set(kImageFilename);
+  visualization_image_->queue_draw();
 }
 
 void MainWindow::on_load_file_button_clicked() noexcept {
