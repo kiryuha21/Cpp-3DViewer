@@ -37,7 +37,6 @@ MainWindow::~MainWindow() { delete controller_; }
 
 void MainWindow::on_render_button_clicked() const noexcept {
   try {
-    controller_->load_object_file(chosen_file_path_);
     controller_->move_object(x_coord_delta_entry_->get_text(),
                              y_coord_delta_entry_->get_text(),
                              z_coord_delta_entry_->get_text());
@@ -58,6 +57,8 @@ void MainWindow::on_render_button_clicked() const noexcept {
 
 void MainWindow::on_load_file_button_clicked() noexcept {
   chosen_file_path_ = file_selector_->get_filename();
+  controller_->load_object_file(chosen_file_path_);
+  controller_->render_image();
 }
 
 }  // namespace s21

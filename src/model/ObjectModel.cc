@@ -3,7 +3,6 @@
 #include <gnuplot-iostream.h>
 
 #include <algorithm>
-#include <cmath>
 #include <fstream>
 #include <sstream>
 
@@ -20,6 +19,8 @@ void ObjectModel::add_facet(const std::vector<int> &facet) {
 }
 
 void ObjectModel::read_from_file(const std::string &filename) {
+  points_coordinates_.clear();
+  facets_.clear();
   std::fstream file(filename, std::ios::in);
   if (!file.is_open()) {
     throw std::logic_error("File opening error");
@@ -27,6 +28,7 @@ void ObjectModel::read_from_file(const std::string &filename) {
 
   std::string str;
   while (std::getline(file, str)) {
+    std::replace(str.begin(), str.end(), ',', '.');
     std::stringstream ss(str);
     char start = '0';
     ss >> start;
@@ -70,10 +72,19 @@ void ObjectModel::write_to_file(const std::string &filename) const {
 
 void ObjectModel::move_points(const std::string &x, const std::string &y,
                               const std::string &z) noexcept {
+  double x_delta = to_double(x, 0);
+  double y_delta = to_double(y, 0);
+  double z_delta = to_double(z, 0);
+
+  if (std::fabs(x_delta) <= kEps && std::fabs(y_delta) <= kEps &&
+      std::fabs(z_delta) <= kEps) {
+    return;
+  }
+
   for (auto &point : points_coordinates_) {
-    point.x_ += to_double(x, 0);
-    point.y_ += to_double(y, 0);
-    point.z_ += to_double(z, 0);
+    point.x_ += x_delta;
+    point.y_ += y_delta;
+    point.z_ += z_delta;
   }
 }
 
@@ -97,6 +108,10 @@ void ObjectModel::scale_points(const std::string &x, const std::string &y,
 void ObjectModel::rotate_points(const std::string &angle,
                                 const std::string &type) {
   double dangle = to_double(angle, 0);
+  if (std::fabs(dangle) <= kEps) {
+    return;
+  }
+
   for (auto &point : points_coordinates_) {
     if (type == "x") {
       point.rotate_on_x(dangle);
