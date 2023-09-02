@@ -28,7 +28,6 @@ void ObjectModel::read_from_file(const std::string &filename) {
 
   std::string str;
   while (std::getline(file, str)) {
-    std::replace(str.begin(), str.end(), ',', '.');
     std::stringstream ss(str);
     char start = '0';
     ss >> start;
