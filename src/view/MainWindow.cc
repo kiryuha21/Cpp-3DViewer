@@ -51,14 +51,27 @@ void MainWindow::on_render_button_clicked() const noexcept {
     return;
   }
 
-  visualization_image_->set(kImageFilename);
-  visualization_image_->queue_draw();
+  display_image();
 }
 
 void MainWindow::on_load_file_button_clicked() noexcept {
   chosen_file_path_ = file_selector_->get_filename();
-  controller_->load_object_file(chosen_file_path_);
+
+  try {
+    controller_->load_object_file(chosen_file_path_);
+    controller_->render_image();
+  } catch (std::logic_error &e) {
+    viewer_label_->set_text(e.what());
+    return;
+  }
+
+  display_image();
+}
+
+void MainWindow::display_image() const {
   controller_->render_image();
+  visualization_image_->set(kImageFilename);
+  visualization_image_->queue_draw();
 }
 
 }  // namespace s21

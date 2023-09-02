@@ -1,0 +1,4 @@
+/home/kiryuha21/CPP4_3DViewer_v2.0-1/cmake-build-debug/CMakeFiles/app.dir
+/home/kiryuha21/CPP4_3DViewer_v2.0-1/cmake-build-debug/CMakeFiles/test.dir
+/home/kiryuha21/CPP4_3DViewer_v2.0-1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/kiryuha21/CPP4_3DViewer_v2.0-1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

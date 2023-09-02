@@ -14,6 +14,7 @@ class MainWindow : public Gtk::Window {
  private:
   void on_render_button_clicked() const noexcept;
   void on_load_file_button_clicked() noexcept;
+  void display_image() const;
 
   Glib::RefPtr<Gtk::Builder> builder_;
 
