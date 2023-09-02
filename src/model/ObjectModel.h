@@ -29,6 +29,9 @@ class ObjectModel {
                     const std::string &z);
   void rotate_points(const std::string &angle, const std::string &type);
 
+  int getFacetsCount() const noexcept;
+  int getPointsCount() const noexcept;
+
  private:
   class Coordinates {
    public:

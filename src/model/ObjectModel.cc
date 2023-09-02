@@ -9,6 +9,12 @@
 
 namespace s21 {
 
+int ObjectModel::getFacetsCount() const noexcept { return facets_.size(); }
+
+int ObjectModel::getPointsCount() const noexcept {
+  return points_coordinates_.size();
+}
+
 void ObjectModel::add_point(double x, double y, double z) {
   points_coordinates_.emplace_back(x, y, z);
 }
