@@ -2,8 +2,6 @@
 
 #include <gnuplot-iostream.h>
 
-#include <fstream>
-#include <sstream>
 
 #include "utils.h"
 
@@ -12,69 +10,20 @@ namespace s21 {
 int ObjectModel::getFacetsCount() const noexcept { return facets_.size(); }
 
 int ObjectModel::getPointsCount() const noexcept {
-  return points_coordinates_.size();
+  return points_.size();
+}
+
+void ObjectModel::clear() {
+  points_.clear();
+  facets_.clear();
 }
 
 void ObjectModel::add_point(double x, double y, double z) {
-  points_coordinates_.emplace_back(x, y, z);
+  points_.emplace_back(x, y, z);
 }
 
 void ObjectModel::add_facet(const std::vector<int> &facet) {
   facets_.push_back(facet);
-}
-
-void ObjectModel::read_from_file(const std::string &filename) {
-  points_coordinates_.clear();
-  facets_.clear();
-  std::fstream file(filename, std::ios::in);
-  if (!file.is_open()) {
-    throw std::logic_error("File opening error");
-  }
-
-  std::string str;
-  while (std::getline(file, str)) {
-    std::stringstream ss(str);
-    char start = '0';
-    ss >> start;
-    if (start == 'v') {
-      double x = 0, y = 0, z = 0;
-      ss >> x >> y >> z;
-      add_point(x, y, z);
-    } else if (start == 'f') {
-      int point_number = 0;
-      std::vector<int> numbers;
-      while (ss >> point_number) {
-        if (point_number < 1) {
-          throw std::logic_error("Point numbers in facet must be >= 1");
-        }
-        numbers.push_back(point_number);
-      }
-      add_facet(numbers);
-    }
-  }
-
-  file.close();
-}
-
-void ObjectModel::write_to_file(const std::string &filename) const {
-  std::fstream file(filename, std::ios::out);
-  if (!file.is_open()) {
-    throw std::logic_error("File opening error");
-  }
-
-  for (const auto &point : points_coordinates_) {
-    file << "v " << point.x_ << " " << point.y_ << " " << point.z_ << "\n";
-  }
-
-  for (auto &facet : facets_) {
-    file << "f ";
-    for (const auto &point : facet) {
-      file << point << " ";
-    }
-    file << "\n";
-  }
-
-  file.close();
 }
 
 void ObjectModel::move_points(const std::string &x, const std::string &y,
@@ -88,7 +37,7 @@ void ObjectModel::move_points(const std::string &x, const std::string &y,
     return;
   }
 
-  for (auto &point : points_coordinates_) {
+  for (auto &point : points_) {
     point.x_ += x_delta;
     point.y_ += y_delta;
     point.z_ += z_delta;
@@ -110,7 +59,7 @@ void ObjectModel::scale_points(const std::string &x, const std::string &y,
     return;
   }
 
-  for (auto &point : points_coordinates_) {
+  for (auto &point : points_) {
     point.x_ *= x_delta;
     point.y_ *= y_delta;
     point.z_ *= z_delta;
@@ -124,7 +73,7 @@ void ObjectModel::rotate_points(const std::string &angle,
     return;
   }
 
-  for (auto &point : points_coordinates_) {
+  for (auto &point : points_) {
     if (type == "x") {
       point.rotate_on_x(dangle);
     } else if (type == "y") {
@@ -184,9 +133,9 @@ void ObjectModel::generate_data(const std::string &filename) const {
 
   for (const auto &facet : facets_) {
     for (const auto &number : facet) {
-      file << points_coordinates_[number - 1].x_ << ' '
-           << points_coordinates_[number - 1].y_ << ' '
-           << points_coordinates_[number - 1].z_ << '\n';
+      file << points_[number - 1].x_ << ' '
+           << points_[number - 1].y_ << ' '
+           << points_[number - 1].z_ << '\n';
     }
     file << '\n';
   }
