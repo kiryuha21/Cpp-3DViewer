@@ -70,8 +70,15 @@ void MainWindow::on_load_file_button_clicked() noexcept {
 
 void MainWindow::display_image() const {
   controller_->render_image();
+
   visualization_image_->set(kImageFilename);
   visualization_image_->queue_draw();
+
+  std::stringstream ss;
+  ss << "Rendered " << controller_->get_file_basename() << " with "
+     << controller_->get_facets_count() << " facets and "
+     << controller_->get_vertexes_count() << " vertexes";
+  viewer_label_->set_text(ss.str());
 }
 
 }  // namespace s21

@@ -17,6 +17,9 @@ class VisualizationController {
   void load_object_file(const std::string& filename);
   void render_image();
 
+  int get_facets_count() const noexcept;
+  int get_vertexes_count() const noexcept;
+
  private:
   ObjectModel* model_ = nullptr;
 };

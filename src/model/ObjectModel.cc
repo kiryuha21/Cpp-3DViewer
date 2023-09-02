@@ -9,9 +9,9 @@
 
 namespace s21 {
 
-int ObjectModel::getFacetsCount() const noexcept { return facets_.size(); }
+int ObjectModel::get_facets_count() const noexcept { return facets_.size(); }
 
-int ObjectModel::getPointsCount() const noexcept {
+int ObjectModel::get_vertexes_count() const noexcept {
   return points_coordinates_.size();
 }
 
