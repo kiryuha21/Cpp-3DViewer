@@ -171,12 +171,15 @@ void ObjectModel::generate_data(const std::string &filename) const {
     throw std::logic_error("File opening error");
   }
 
+  file << std::setprecision(6) << std::fixed;
+
   for (const auto &facet : facets_) {
     for (const auto &number : facet) {
-      file << points_coordinates_[number].x_ << ' '
-           << points_coordinates_[number].y_ << ' '
-           << points_coordinates_[number].z_ << '\n';
+      file << points_coordinates_[number - 1].x_ << ' '
+           << points_coordinates_[number - 1].y_ << ' '
+           << points_coordinates_[number - 1].z_ << '\n';
     }
+    file << '\n';
   }
 
   file.close();
