@@ -2,7 +2,6 @@
 
 #include <gnuplot-iostream.h>
 
-#include <algorithm>
 #include <fstream>
 #include <sstream>
 
@@ -95,6 +94,11 @@ void ObjectModel::scale_points(const std::string &x, const std::string &y,
   if (std::fabs(x_delta) <= kEps || std::fabs(y_delta) <= kEps ||
       std::fabs(z_delta) <= kEps) {
     throw std::logic_error("Zero scaling");
+  }
+
+  if (std::fabs(x_delta - 1) <= kEps && std::fabs(y_delta - 1) <= kEps &&
+      std::fabs(z_delta - 1) <= kEps) {
+    return;
   }
 
   for (auto &point : points_coordinates_) {
