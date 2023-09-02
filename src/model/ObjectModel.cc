@@ -174,7 +174,7 @@ void ObjectModel::generate_data(const std::string &filename) const {
     throw std::logic_error("File opening error");
   }
 
-  file << std::setprecision(6) << std::fixed;
+  file << std::setprecision(kDefaultPrecision) << std::fixed;
 
   for (const auto &facet : facets_) {
     for (const auto &number : facet) {
