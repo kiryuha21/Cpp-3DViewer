@@ -7,15 +7,14 @@
 
 namespace s21 {
 
-int ObjectModel::getFacetsCount() const noexcept { return facets_.size(); }
-
-int ObjectModel::getPointsCount() const noexcept {
-  return points_.size();
-}
+int ObjectModel::get_facets_count() const noexcept { return facets_.size(); }
 
 void ObjectModel::clear() {
   points_.clear();
   facets_.clear();
+
+int ObjectModel::get_vertexes_count() const noexcept {
+  return points_.size();
 }
 
 void ObjectModel::add_point(double x, double y, double z) {

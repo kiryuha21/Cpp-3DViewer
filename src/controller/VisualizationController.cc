@@ -33,4 +33,12 @@ void VisualizationController::render_image() {
   model_->call_gnuplot();
 }
 
+int VisualizationController::get_facets_count() const noexcept {
+  return model_->get_facets_count();
+}
+
+int VisualizationController::get_vertexes_count() const noexcept {
+  return model_->get_vertexes_count();
+}
+
 }  // namespace s21

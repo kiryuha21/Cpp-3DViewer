@@ -11,6 +11,9 @@ class ObjectModel {
   ObjectModel(int width, int height) : width_(width), height_(height) {}
   ~ObjectModel() = default;
 
+  void get_facets_count() const noexcept;
+  void get_points_count() const noexcept;
+
   void clear();
 
   void add_point(double x, double y, double z);
@@ -25,8 +28,8 @@ class ObjectModel {
                     const std::string &z);
   void rotate_points(const std::string &angle, const std::string &type);
 
-  int getFacetsCount() const noexcept;
-  int getPointsCount() const noexcept;
+  int get_facets_count() const noexcept;
+  int get_vertexes_count() const noexcept;
 
  private:
   class Coordinates {
