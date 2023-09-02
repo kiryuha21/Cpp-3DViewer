@@ -1,7 +1,7 @@
 #ifndef INC_3D_VIEWER_TEMPLATE_VISUALIZATIONCONTROLLER_H
 #define INC_3D_VIEWER_TEMPLATE_VISUALIZATIONCONTROLLER_H
 
-#include "../model/ObjectModel.h"
+#include "../model/FacadeModel.h"
 
 namespace s21 {
 class VisualizationController {
@@ -20,8 +20,10 @@ class VisualizationController {
   int get_facets_count() const noexcept;
   int get_vertexes_count() const noexcept;
 
+  std::string get_file_basename(const std::string& filename) const;
+
  private:
-  ObjectModel* model_ = nullptr;
+  FacadeModel* model_ = nullptr;
 };
 }  // namespace s21
 

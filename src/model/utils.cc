@@ -32,4 +32,25 @@ std::string to_precised_string(double val) noexcept {
   return ss.str();
 }
 
+void Coordinates::rotate_on_x(double angle) {
+  angle = angle * M_PI / 180;
+  double z = z_, y = y_;
+  y_ = y * cos(angle) + z * sin(angle);
+  z_ = -y * sin(angle) + z * cos(angle);
+}
+
+void Coordinates::rotate_on_y(double angle) {
+  angle = angle * M_PI / 180;
+  double z = z_, x = x_;
+  x_ = x * cos(angle) + z * sin(angle);
+  z_ = -x * sin(angle) + z * cos(angle);
+}
+
+void Coordinates::rotate_on_z(double angle) {
+  angle = angle * M_PI / 180;
+  double x = x_, y = y_;
+  x_ = x * cos(angle) + y * sin(angle);
+  y_ = -x * sin(angle) + y * cos(angle);
+}
+
 }  // namespace s21

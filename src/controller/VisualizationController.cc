@@ -2,7 +2,7 @@
 
 namespace s21 {
 VisualizationController::VisualizationController(int width, int height) {
-  model_ = new ObjectModel(width, height);
+  model_ = new FacadeModel(width, height);
 }
 
 VisualizationController::~VisualizationController() { delete model_; }
@@ -38,7 +38,12 @@ int VisualizationController::get_facets_count() const noexcept {
 }
 
 int VisualizationController::get_vertexes_count() const noexcept {
-  return model_->get_vertexes_count();
+  return model_->get_points_count();
+}
+
+std::string VisualizationController::get_file_basename(
+    const std::string& filename) const {
+  return model_->get_file_basename(filename);
 }
 
 }  // namespace s21

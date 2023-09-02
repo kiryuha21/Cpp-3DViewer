@@ -75,8 +75,8 @@ void MainWindow::display_image() const {
   visualization_image_->queue_draw();
 
   std::stringstream ss;
-  ss << "Rendered " << controller_->get_file_basename() << " with "
-     << controller_->get_facets_count() << " facets and "
+  ss << "Rendered " << controller_->get_file_basename(chosen_file_path_)
+     << " with " << controller_->get_facets_count() << " facets and "
      << controller_->get_vertexes_count() << " vertexes";
   viewer_label_->set_text(ss.str());
 }
