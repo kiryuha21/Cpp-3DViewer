@@ -38,6 +38,9 @@ void ObjectModel::read_from_file(const std::string &filename) {
       int point_number = 0;
       std::vector<int> numbers;
       while (ss >> point_number) {
+        if (point_number < 1) {
+          throw std::logic_error("Point numbers in facet must be >= 1");
+        }
         numbers.push_back(point_number);
       }
       add_facet(numbers);
