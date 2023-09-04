@@ -70,9 +70,6 @@ void MainWindow::on_load_file_button_clicked() noexcept {
 }
 
 void MainWindow::display_image() const {
-  controller_->render_image(visualization_image_->get_allocated_width(),
-                            visualization_image_->get_allocated_height());
-
   visualization_image_->set(kImageFilename);
   visualization_image_->queue_draw();
 
