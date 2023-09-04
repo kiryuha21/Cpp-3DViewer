@@ -2,20 +2,26 @@
 #define SRC_DATA_AFFINE_MODEL_H
 
 #include "ObjectModel.h"
+#include "RequestBuilder.h"
 
 namespace s21 {
 
 class AffineModel {
  public:
-  void move_points(ObjectModel *object, const std::string &x,
-                   const std::string &y, const std::string &z) const noexcept;
-  void scale_points(ObjectModel *object, const std::string &x,
-                    const std::string &y, const std::string &z) const;
-  void rotate_points(ObjectModel *object, const std::string &angle,
-                     const std::string &type) const;
+  AffineModel();
+  ~AffineModel();
+
+  void add_points_movement(const std::string &x, const std::string &y,
+                           const std::string &z) const noexcept;
+  void add_points_scaling(const std::string &x, const std::string &y,
+                          const std::string &z) const;
+  void add_points_rotation(const std::string &angle,
+                           const std::string &type) const;
+  void execute_changes(ObjectModel *object);
 
  private:
   static constexpr double kEps = 1e-7;
+  RequestBuilder *request_builder_ = nullptr;
 };
 
 }  // namespace s21

@@ -14,13 +14,15 @@ struct Request {
   Coordinates* scale = nullptr;
 
   double rotation_value = 0;
-  std::function<void(Coordinates*, double)> rotate_function = nullptr;
+  std::function<void(Coordinates&, double)> rotate_function = nullptr;
 };
 
 class RequestBuilder {
  public:
   RequestBuilder();
   ~RequestBuilder();
+
+  void refresh();
 
   RequestBuilder& add_movement_component(double x, double y, double z);
   RequestBuilder& add_scale_component(double x, double y, double z);

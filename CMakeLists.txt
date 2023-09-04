@@ -25,6 +25,8 @@ add_executable(app
         src/model/FacadeModel.cc
         src/model/utils.cc
         src/model/utils.h
+        src/model/GnuPlotSingleton.cc
+        src/model/GnuPlotSingleton.h
         src/model/RequestBuilder.cc
         src/model/RequestBuilder.h)
 

@@ -35,14 +35,15 @@ MainWindow::~MainWindow() { delete controller_; }
 
 void MainWindow::on_render_button_clicked() const noexcept {
   try {
-    controller_->move_object(x_coord_delta_entry_->get_text(),
-                             y_coord_delta_entry_->get_text(),
-                             z_coord_delta_entry_->get_text());
-    controller_->scale_object(x_scale_delta_entry_->get_text(),
-                              y_scale_delta_entry_->get_text(),
-                              z_scale_delta_entry_->get_text());
-    controller_->rotate_object(angle_delta_entry_->get_text(),
-                               angle_combo_box_->get_active_text());
+    controller_->load_object_movement(x_coord_delta_entry_->get_text(),
+                                      y_coord_delta_entry_->get_text(),
+                                      z_coord_delta_entry_->get_text());
+    controller_->load_object_scaling(x_scale_delta_entry_->get_text(),
+                                     y_scale_delta_entry_->get_text(),
+                                     z_scale_delta_entry_->get_text());
+    controller_->load_object_rotation(angle_delta_entry_->get_text(),
+                                      angle_combo_box_->get_active_text());
+    controller_->execute_object_changes();
     controller_->render_image(visualization_image_->get_allocated_width(),
                               visualization_image_->get_allocated_height());
   } catch (std::logic_error &e) {

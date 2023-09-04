@@ -10,6 +10,11 @@ RequestBuilder::RequestBuilder() { request_ = new Request; }
 
 RequestBuilder::~RequestBuilder() { delete request_; }
 
+void RequestBuilder::refresh() {
+  delete request_;
+  request_ = new Request;
+}
+
 RequestBuilder &RequestBuilder::add_movement_component(double x, double y,
                                                        double z) {
   request_->movement = new Coordinates(x, y, z);

@@ -17,11 +17,13 @@ class FacadeModel {
   int get_facets_count() const noexcept;
   int get_points_count() const noexcept;
 
-  void move_points(const std::string &x, const std::string &y,
-                   const std::string &z) const noexcept;
-  void scale_points(const std::string &x, const std::string &y,
-                    const std::string &z) const;
-  void rotate_points(const std::string &angle, const std::string &type) const;
+  void add_points_movement(const std::string &x, const std::string &y,
+                           const std::string &z) const noexcept;
+  void add_points_scaling(const std::string &x, const std::string &y,
+                          const std::string &z) const;
+  void add_points_rotation(const std::string &angle,
+                           const std::string &type) const;
+  void execute_changes() const;
 
   void read_from_file(const std::string &filename) const;
   std::string get_file_basename(const std::string &filename) const;

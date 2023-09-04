@@ -22,19 +22,24 @@ int FacadeModel::get_points_count() const noexcept {
   return object_model_->get_points_count();
 }
 
-void FacadeModel::move_points(const std::string &x, const std::string &y,
-                              const std::string &z) const noexcept {
-  affine_model_->move_points(object_model_, x, y, z);
+void FacadeModel::add_points_movement(const std::string &x,
+                                      const std::string &y,
+                                      const std::string &z) const noexcept {
+  affine_model_->add_points_movement(x, y, z);
 }
 
-void FacadeModel::scale_points(const std::string &x, const std::string &y,
-                               const std::string &z) const {
-  affine_model_->scale_points(object_model_, x, y, z);
+void FacadeModel::add_points_scaling(const std::string &x, const std::string &y,
+                                     const std::string &z) const {
+  affine_model_->add_points_scaling(x, y, z);
 }
 
-void FacadeModel::rotate_points(const std::string &angle,
-                                const std::string &type) const {
-  affine_model_->rotate_points(object_model_, angle, type);
+void FacadeModel::add_points_rotation(const std::string &angle,
+                                      const std::string &type) const {
+  affine_model_->add_points_rotation(angle, type);
+}
+
+void FacadeModel::execute_changes() const {
+  affine_model_->execute_changes(object_model_);
 }
 
 void FacadeModel::read_from_file(const std::string &filename) const {
