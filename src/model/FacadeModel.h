@@ -2,6 +2,7 @@
 #define SRC_DATA_FACADE_MODEL_H
 
 #include "AffineModel.h"
+#include "GnuPlotSingleton.h"
 #include "ObjectModel.h"
 #include "ParserModel.h"
 #include "utils.h"
@@ -10,7 +11,7 @@ namespace s21 {
 
 class FacadeModel {
  public:
-  FacadeModel(int width, int height);
+  FacadeModel(int width_, int height_);
   ~FacadeModel();
 
   int get_facets_count() const noexcept;
@@ -23,9 +24,10 @@ class FacadeModel {
   void rotate_points(const std::string &angle, const std::string &type) const;
 
   void read_from_file(const std::string &filename) const;
+  std::string get_file_basename(const std::string &filename) const;
+
   void generate_data(const std::string &filename) const;
   void call_gnuplot() const;
-  std::string get_file_basename(const std::string &filename) const;
 
  private:
   ObjectModel *object_model_ = nullptr;
