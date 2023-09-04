@@ -11,7 +11,7 @@ namespace s21 {
 
 class FacadeModel {
  public:
-  FacadeModel(int width_, int height_);
+  FacadeModel();
   ~FacadeModel();
 
   int get_facets_count() const noexcept;
@@ -27,7 +27,7 @@ class FacadeModel {
   std::string get_file_basename(const std::string &filename) const;
 
   void generate_data(const std::string &filename) const;
-  void call_gnuplot() const;
+  void call_gnuplot(int width, int height) const;
 
  private:
   ObjectModel *object_model_ = nullptr;

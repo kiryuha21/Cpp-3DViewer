@@ -28,9 +28,7 @@ MainWindow::MainWindow(BaseObjectType *obj,
   load_file_button_->signal_clicked().connect(
       sigc::mem_fun(*this, &MainWindow::on_load_file_button_clicked));
 
-  controller_ =
-      new VisualizationController(visualization_image_->get_allocated_width(),
-                                  visualization_image_->get_allocated_height());
+  controller_ = new VisualizationController;
 }
 
 MainWindow::~MainWindow() { delete controller_; }
@@ -45,7 +43,8 @@ void MainWindow::on_render_button_clicked() const noexcept {
                               z_scale_delta_entry_->get_text());
     controller_->rotate_object(angle_delta_entry_->get_text(),
                                angle_combo_box_->get_active_text());
-    controller_->render_image();
+    controller_->render_image(visualization_image_->get_allocated_width(),
+                              visualization_image_->get_allocated_height());
   } catch (std::logic_error &e) {
     viewer_label_->set_text(e.what());
     return;
@@ -59,7 +58,8 @@ void MainWindow::on_load_file_button_clicked() noexcept {
 
   try {
     controller_->load_object_file(chosen_file_path_);
-    controller_->render_image();
+    controller_->render_image(visualization_image_->get_allocated_width(),
+                              visualization_image_->get_allocated_height());
   } catch (std::logic_error &e) {
     viewer_label_->set_text(e.what());
     return;
@@ -69,7 +69,8 @@ void MainWindow::on_load_file_button_clicked() noexcept {
 }
 
 void MainWindow::display_image() const {
-  controller_->render_image();
+  controller_->render_image(visualization_image_->get_allocated_width(),
+                            visualization_image_->get_allocated_height());
 
   visualization_image_->set(kImageFilename);
   visualization_image_->queue_draw();

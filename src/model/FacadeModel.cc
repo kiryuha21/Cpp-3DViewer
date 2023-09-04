@@ -2,11 +2,10 @@
 
 namespace s21 {
 
-FacadeModel::FacadeModel(int width, int heigth) {
+FacadeModel::FacadeModel() {
   object_model_ = new ObjectModel;
   parser_model_ = new ParserModel;
   affine_model_ = new AffineModel;
-  GnuPlotSingleton::get_instance(width, heigth);
 }
 
 FacadeModel::~FacadeModel() {
@@ -47,11 +46,11 @@ std::string FacadeModel::get_file_basename(const std::string &filename) const {
 }
 
 void FacadeModel::generate_data(const std::string &filename) const {
-  GnuPlotSingleton::get_instance(0, 0).generate_data(object_model_, filename);
+  GnuPlotSingleton::get_instance().generate_data(object_model_, filename);
 }
 
-void FacadeModel::call_gnuplot() const {
-  GnuPlotSingleton::get_instance(0, 0).call_gnuplot();
+void FacadeModel::call_gnuplot(int width, int height) const {
+  GnuPlotSingleton::get_instance().call_gnuplot(width, height);
 }
 
 }  // namespace s21

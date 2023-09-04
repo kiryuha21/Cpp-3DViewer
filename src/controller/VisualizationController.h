@@ -6,7 +6,7 @@
 namespace s21 {
 class VisualizationController {
  public:
-  VisualizationController(int width, int height);
+  VisualizationController();
   ~VisualizationController();
 
   void move_object(const std::string& x_delta, const std::string& y_delta,
@@ -15,7 +15,7 @@ class VisualizationController {
                     const std::string& z_delta);
   void rotate_object(const std::string& delta, const std::string& type);
   void load_object_file(const std::string& filename);
-  void render_image();
+  void render_image(int width, int height);
 
   int get_facets_count() const noexcept;
   int get_vertexes_count() const noexcept;

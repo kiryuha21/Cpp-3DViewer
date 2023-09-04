@@ -6,8 +6,8 @@
 
 namespace s21 {
 
-GnuPlotSingleton &GnuPlotSingleton::get_instance(int width, int height) {
-  static GnuPlotSingleton instance_(width, height);
+GnuPlotSingleton &GnuPlotSingleton::get_instance() {
+  static GnuPlotSingleton instance_;
   return instance_;
 }
 
@@ -32,9 +32,9 @@ void GnuPlotSingleton::generate_data(const ObjectModel *object,
   file.close();
 }
 
-void GnuPlotSingleton::call_gnuplot() const {
+void GnuPlotSingleton::call_gnuplot(int width, int height) const {
   Gnuplot gp;
-  gp << "set terminal pngcairo size " << width_ << "," << height_ << "\n"
+  gp << "set terminal pngcairo size " << width << "," << height << "\n"
      << "set output '" << kImageFilename << "'\n"
      << "set xyplane at 0\n"
      << "set view equal xyz\n"

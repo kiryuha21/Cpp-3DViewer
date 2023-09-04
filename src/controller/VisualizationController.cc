@@ -1,9 +1,7 @@
 #include "VisualizationController.h"
 
 namespace s21 {
-VisualizationController::VisualizationController(int width, int height) {
-  model_ = new FacadeModel(width, height);
-}
+VisualizationController::VisualizationController() { model_ = new FacadeModel; }
 
 VisualizationController::~VisualizationController() { delete model_; }
 
@@ -28,9 +26,9 @@ void VisualizationController::load_object_file(const std::string& filename) {
   model_->read_from_file(filename);
 }
 
-void VisualizationController::render_image() {
+void VisualizationController::render_image(int width, int height) {
   model_->generate_data(kPointsFilename);
-  model_->call_gnuplot();
+  model_->call_gnuplot(width, height);
 }
 
 int VisualizationController::get_facets_count() const noexcept {
