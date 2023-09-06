@@ -52,7 +52,7 @@ std::fstream open_file(const std::string& filename) {
   return file;
 }
 
-TEST(affine_suite, suite_1) {
+TEST(affine_suite, scaling_test) {
   FacadeModel model = create_model("test1.cobj");
   std::fstream file = open_file("test1.robj");
 
@@ -62,7 +62,7 @@ TEST(affine_suite, suite_1) {
   ASSERT_POINTS("test1.tobj", file, model);
 }
 
-TEST(affine_suite, suite_2) {
+TEST(affine_suite, rotation_test) {
   FacadeModel model = create_model("test2.cobj");
   std::fstream file = open_file("test2.robj");
 
@@ -75,7 +75,7 @@ TEST(affine_suite, suite_2) {
   ASSERT_POINTS("test2.tobj", file, model);
 }
 
-TEST(affine_suite, suite_3) {
+TEST(affine_suite, movement_test) {
   FacadeModel model = create_model("test3.cobj");
   std::fstream file = open_file("test3.robj");
 
@@ -87,7 +87,7 @@ TEST(affine_suite, suite_3) {
   ASSERT_POINTS("test3.tobj", file, model);
 }
 
-TEST(affine_suite, suite_4) {
+TEST(affine_suite, mixed_changes_test) {
   FacadeModel model = create_model("test4.cobj");
   std::fstream file = open_file("test4.robj");
 
@@ -103,7 +103,7 @@ TEST(affine_suite, suite_4) {
   ASSERT_POINTS("test4.tobj", file, model);
 }
 
-TEST(affine_suite, suite_5) {
+TEST(affine_suite, round_rotation_test) {
   FacadeModel model = create_model("test5.cobj");
   std::fstream file = open_file("test5.robj");
 
