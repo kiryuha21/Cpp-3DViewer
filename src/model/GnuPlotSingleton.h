@@ -17,7 +17,9 @@ class GnuPlotSingleton {
   void call_gnuplot(int width, int height) const;
 
   GnuPlotSingleton(const GnuPlotSingleton&) = delete;
+  GnuPlotSingleton(const GnuPlotSingleton&&) = delete;
   GnuPlotSingleton& operator=(const GnuPlotSingleton&) = delete;
+  GnuPlotSingleton& operator=(const GnuPlotSingleton&&) = delete;
 
  private:
   GnuPlotSingleton() = default;
